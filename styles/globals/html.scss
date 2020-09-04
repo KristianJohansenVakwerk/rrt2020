@@ -1,0 +1,66 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  background: inherit;
+  overflow-x: hidden;
+  
+}
+figure {
+  margin: 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid currentColor;
+  margin-bottom: bl(4);
+}
+img {
+  // removes bottom margin
+  display: block;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: #0000;
+}
+address {
+  font-style: inherit;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  outline: none;
+}
+
+p {
+  a {
+    color: currentColor;
+    border-bottom: 1px solid currentColor;
+  }
+
+  a:hover {
+    color: $dark-grey;
+    border-bottom: 1px solid $dark-grey;
+  }
+
+  strong {
+    font-weight: normal;
+  }
+}

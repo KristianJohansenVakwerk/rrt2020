@@ -1,0 +1,16 @@
+@media (max-width: $bp-sm) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: $bp-md) {
+  .hide-tablet {
+    display: none !important;
+  }
+}
+@media (min-width: $bp-sm) {
+  .hide-desktop {
+    display: none !important;
+  }
+}

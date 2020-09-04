@@ -1,0 +1,45 @@
+@mixin type-body {
+  font-family: OCR;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0em;
+  line-height: 20px;
+  margin-top: -1px;
+
+  strong,
+  b {
+    font-weight: normal;
+  }
+}
+
+@mixin type-heading {
+  font-family: OCR;
+  text-transform: uppercase;
+  font-size: 42px;
+  letter-spacing: -1px;
+  line-height: 1.142em;
+  display: inline-block;
+  font-weight: 500;
+  margin: -4px 0 0 -1px;
+
+  @include for-mobile {
+    font-size: 28px;
+    margin-bottom: 1em;
+  }
+}
+
+@mixin type-menu {
+  @include type-heading;
+  @include for-mobile {
+    font-size: 42px;
+    line-height: 1.142em;
+  }
+}
+
+@mixin type-paragraph {
+  font-family: 'TimesLTPro-Roman', Times, serif;
+  text-transform: none;
+  font-size: 20px;
+  letter-spacing: 0px;
+  line-height: 24px;
+}

@@ -1,0 +1,36 @@
+.Blocks {
+}
+
+@mixin bg($background: $black, $color: $white) {
+  color: $color;
+  background-color: $background;
+  &.col-12:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    margin-left: calc(0.5 * (100% - 100vw));
+    background-color: $background;
+  }
+}
+
+.bg {
+  @include bg;
+}
+
+.bg--light {
+  @include bg($white, $black);
+}
+
+.bg--black {
+  @include bg($black, $white);
+}
+
+// .Page--vara-tester {
+//   .EditorialBlock:last-child {
+//     margin-bottom: bl(12);
+//     @include bg($background: $beige, $color: $black);
+//   }
+// }
