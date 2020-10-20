@@ -30,7 +30,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/base-ui' }],
+  plugins: [
+    { src: '~/plugins/base-ui' },
+    { src: '~/components/index' },
+    { src: '~/plugins/anime' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */

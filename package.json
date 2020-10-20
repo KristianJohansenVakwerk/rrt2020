@@ -1,7 +1,7 @@
 {
-  "name": "wastberg",
+  "name": "rtt2020",
   "version": "1.0.0",
-  "description": "wastberg.com",
+  "description": "rtt2020.com",
   "author": "sdl",
   "private": true,
   "scripts": {
@@ -16,7 +16,8 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "node-sass": "^4.14.1",
     "nuxt": "^2.0.0",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-animejs": "^2.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
