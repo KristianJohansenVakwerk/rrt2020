@@ -1,6 +1,6 @@
 <template>
   <div>
-    <svg-loader />
+    <!-- <svg-loader /> -->
     <nuxt />
   </div>
 </template>

@@ -1,5 +1,7 @@
 <template>
-  <div class="">Test <TestButton /><ImageMedia /></div>
+  <div>
+    <draggable />
+  </div>
 </template>
 
 <script>
