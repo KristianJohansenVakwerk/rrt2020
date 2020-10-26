@@ -12,7 +12,7 @@
     width: 300vw;
     height: 300vw;
     border: 1px solid black;
-    background: yellow;
+    background: white;
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
@@ -24,8 +24,15 @@
     width: 250vw;
     height: 250vw;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: white;
+    // transform: scale(0.3);
+
+    div {
+      padding: 5vw;
+      // background: blue;
+      width: 100%;
+    }
   }
 }

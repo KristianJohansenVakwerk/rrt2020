@@ -3,7 +3,13 @@
   <div class="draggable">
     <div class="draggable-bounds">
       <div class="drag">
-        <span v-for="i in 2" :key="i">Draggable {{ i }}</span>
+        <div v-for="(entry, index) in computedContent" :key="index">
+          <base-image
+            :mods="['grid']"
+            :img="entry.primary.image"
+            :sizes="'(min-width: 600px) 480px, 920px'"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -19,10 +25,20 @@ if (process.client) {
 
 export default {
   components: {},
+  props: {
+    content: {
+      type: [Array],
+      default: () => []
+    }
+  },
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    computedContent() {
+      return this.content
+    }
+  },
   mounted() {
     Draggable.create('.drag', {
       type: 'x,y',

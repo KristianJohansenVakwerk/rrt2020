@@ -1,0 +1,126 @@
+{
+  "Main": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Description",
+        "placeholder": "A concise description of the designer"
+      }
+    },
+    "meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Reference Image"
+      }
+    }
+  },
+  "Presentation": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Name",
+        "placeholder": "Name of the designer(s)"
+      }
+    },
+    "biography": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, hyperlink",
+        "label": "Biography"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
+    "image_caption": {
+      "type": "Text",
+      "config": {
+        "label": "Image Caption"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "interview": [],
+          "quote": []
+        },
+        "choices": {
+          "interview": {
+            "type": "Slice",
+            "fieldset": "Interview",
+            "description": "(1 per page max)",
+            "icon": "border_color",
+            "display": "list",
+            "non-repeat": {
+              "date": {
+                "type": "Date",
+                "config": {
+                  "label": "Date"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "quote": {
+            "type": "Slice",
+            "fieldset": "Quote",
+            "description": "(1 per page max)",
+            "icon": "face",
+            "display": "list",
+            "non-repeat": {
+              "quote": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading4, heading5, heading6",
+                  "label": "Quote"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  },
+  "Designed Products": {
+    "products": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "product": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["product"],
+              "label": "Product"
+            }
+          }
+        },
+        "label": "Products"
+      }
+    }
+  }
+}

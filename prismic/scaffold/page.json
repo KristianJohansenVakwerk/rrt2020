@@ -1,0 +1,252 @@
+{
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Description",
+        "placeholder": "A concise description of the page"
+      }
+    },
+    "meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Reference Image"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    }
+  },
+  "SEO": {
+    "seo_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "SEO Title",
+        "placeholder": "Title for search results"
+      }
+    },
+    "seo_description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "SEO Description"
+      }
+    },
+    "og_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "OG Title",
+        "placeholder": "Title for sharing"
+      }
+    },
+    "og_description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "OG Description",
+        "placeholder": "Description for sharing"
+      }
+    },
+    "og_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "OG Image"
+      }
+    }
+  },
+  "Page Content": {
+    "optional_intro_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading4, strong, em, hyperlink",
+        "label": "Optional Intro Text"
+      }
+    },
+    "body": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "labels": {
+          "title__text___image_s_": [],
+          "text__2_columns_": [],
+          "fullbleed_image": [],
+          "quote": [],
+          "text__2_cokumns_manually_": []
+        },
+        "choices": {
+          "title__text___image_s_": {
+            "type": "Slice",
+            "fieldset": "Title, Text & Image(s)",
+            "description": "3 column layout with respectively section title, body and optionally a list of images",
+            "icon": "border_vertical",
+            "display": "list",
+            "non-repeat": {
+              "section_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Section Title"
+                }
+              },
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading4, strong, em, hyperlink",
+                  "label": "Text"
+                }
+              }
+            },
+            "repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "caption": {
+                "type": "Text",
+                "config": {
+                  "label": "Caption"
+                }
+              }
+            }
+          },
+          "text__2_columns_": {
+            "type": "Slice",
+            "fieldset": "Text (2 columns)",
+            "description": "2 Column layout for text (i.e. contact)",
+            "icon": "border_vertical",
+            "display": "list",
+            "non-repeat": {
+              "subtitle": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "allowTargetBlank": true,
+                  "label": "Subtitle"
+                }
+              },
+              "text_columns": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Text columns"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "fullbleed_image": {
+            "type": "Slice",
+            "fieldset": "Fullbleed Image",
+            "description": "Big image, full bleed",
+            "icon": "camera_alt",
+            "display": "list",
+            "non-repeat": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Image"
+                }
+              },
+              "caption": {
+                "type": "Text",
+                "config": {
+                  "label": "Caption"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "quote": {
+            "type": "Slice",
+            "fieldset": "Headline",
+            "description": "Headline",
+            "icon": "chat",
+            "display": "list",
+            "non-repeat": {
+              "quote": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading1, heading2, heading4, heading5, heading6",
+                  "label": "Quote"
+                }
+              }
+            },
+            "repeat": {}
+          },
+          "text__2_cokumns_manually_": {
+            "type": "Slice",
+            "fieldset": "Text (2 columns manually)",
+            "description": "Add left and right column manually",
+            "icon": "format_color_text",
+            "display": "list",
+            "non-repeat": {
+              "subtitle": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Subtitle"
+                }
+              },
+              "left_column": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading4, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Left column"
+                }
+              },
+              "right_column": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, heading3, strong, em, hyperlink",
+                  "allowTargetBlank": true,
+                  "label": "Right Column"
+                }
+              }
+            },
+            "repeat": {}
+          }
+        }
+      }
+    }
+  },
+  "Explore More": {
+    "entries": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "entry": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "label": "Entry"
+            }
+          }
+        },
+        "label": "Entries"
+      }
+    }
+  }
+}

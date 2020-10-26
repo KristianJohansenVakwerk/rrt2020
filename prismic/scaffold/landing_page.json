@@ -1,0 +1,147 @@
+{
+  "Meta Data": {
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    },
+    "page_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Page Title"
+      }
+    }
+  },
+  "Header": {
+    "header_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Header Image"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
+      }
+    },
+    "subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Subtitle"
+      }
+    },
+    "header_background": {
+      "type": "Select",
+      "config": {
+        "options": ["white", "black"],
+        "default_value": "white",
+        "label": "Header Background"
+      }
+    },
+    "related_entry": {
+      "type": "Link",
+      "config": {
+        "label": "Related Entry"
+      }
+    }
+  },
+  "Presentation": {
+    "collage_one": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Collage One"
+      }
+    },
+    "collage_one_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Collage One Title"
+      }
+    },
+    "collage_one_text": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph, heading2",
+        "label": "Collage One Text"
+      }
+    },
+    "collage_two": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Collage Two"
+      }
+    },
+    "collage_two_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Collage Two Title"
+      }
+    },
+    "collage_text_two": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Collage Text Two"
+      }
+    },
+    "collage_three": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Image"
+            }
+          }
+        },
+        "label": "Collage Three"
+      }
+    },
+    "collage_three_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Collage Three Title"
+      }
+    },
+    "collage_three_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Collage Three Text"
+      }
+    }
+  }
+}

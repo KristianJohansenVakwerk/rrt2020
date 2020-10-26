@@ -20,6 +20,13 @@ export default {
    ** Customize the progress-bar color
    */
   loading: false,
+
+  generate: {
+    routes() {
+      return ['crawlme']
+    }
+  },
+
   /*
    ** Global CSS
    */
@@ -40,16 +47,24 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/prismic'
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/style-resources', '@nuxt/content', '@nuxtjs/svg'],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/svg'],
 
   styleResources: {
     scss: ['~styles/_constants.scss', '~styles/mixins/*.scss']
   },
+
+  prismic: {
+    endpoint: 'https://rtt2020.cdn.prismic.io/api/v2',
+    preview: true,
+    linkResolver: '~/prismic/link-resolver.js'
+  },
+
   /*
    ** Build configuration
    */
@@ -58,6 +73,9 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
-    transpile: ['gsap']
+    transpile: ['gsap'],
+    babel: {
+      plugins: ['@babel/plugin-proposal-optional-chaining']
+    }
   }
 }

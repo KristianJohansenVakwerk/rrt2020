@@ -1,0 +1,77 @@
+{
+  "Summary": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "title"
+      }
+    },
+    "date": {
+      "type": "Date",
+      "config": {
+        "label": "Date"
+      }
+    },
+    "category": {
+      "type": "Select",
+      "config": {
+        "options": ["News", "Products", "Events", "Publications"],
+        "default_value": "News",
+        "label": "Category"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    },
+    "meta_description": {
+      "type": "Text",
+      "config": {
+        "label": "Meta Description",
+        "placeholder": "Short summary of the article"
+      }
+    },
+    "meta_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Reference Image"
+      }
+    }
+  },
+  "Article": {
+    "text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, hyperlink",
+        "label": "Text"
+      }
+    },
+    "images": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "Image"
+            }
+          },
+          "caption": {
+            "type": "Text",
+            "config": {
+              "label": "Caption"
+            }
+          }
+        },
+        "label": "Images"
+      }
+    }
+  }
+}
