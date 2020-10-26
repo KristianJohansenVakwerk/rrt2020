@@ -3,6 +3,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: 98;
 
   .draggable-bounds {
     position: absolute;
@@ -25,6 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
+    background: white;
   }
 }

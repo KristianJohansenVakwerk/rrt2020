@@ -3,7 +3,7 @@
   <div class="draggable">
     <div class="draggable-bounds">
       <div class="drag">
-        <span v-for="i in 100" :key="i">Draggable {{ i }}</span>
+        <span v-for="i in 2" :key="i">Draggable {{ i }}</span>
       </div>
     </div>
   </div>

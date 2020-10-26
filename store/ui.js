@@ -1,9 +1,5 @@
 const defaultState = {
-  header: {
-    menuOpen: false
-  },
-  isIdle: false,
-  error: false
+  loaderStatus: true
 }
 
 export const state = () => defaultState
@@ -11,10 +7,7 @@ export const state = () => defaultState
 export const actions = {}
 
 export const mutations = {
-  setMenuOpen(state, menuOpen) {
-    state.header = { ...state.header, menuOpen }
-  },
-  setError(state, error) {
-    state.error = error
+  setLoaderStatus(state, payload) {
+    state.loaderStatus = payload
   }
 }
