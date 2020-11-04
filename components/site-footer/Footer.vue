@@ -1,6 +1,8 @@
 <style lang="scss" src="./Footer.scss"></style>
 <template>
-  <footer class="SiteFooter"></footer>
+  <footer class="SiteFooter">
+    <nuxt-link :to="'/indexes'">Index</nuxt-link>
+  </footer>
 </template>
 <script>
 export default {

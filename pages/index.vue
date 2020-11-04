@@ -17,20 +17,13 @@ export default {
 
     if (documents.results.length) {
       const docs = documents.results
-      let content = []
+      const content = []
 
       for (let i = 0; i < docs.length; i++) {
         const doc = docs[i]
+        const poster = doc.data.musaic_image
 
-        const images = doc.data.body
-
-        for (let j = 0; j < images.length; j++) {
-          const image = images[j]
-
-          image.uid = doc.uid
-        }
-
-        content = content.concat(images)
+        content.push(poster)
       }
 
       return { docs, content }

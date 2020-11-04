@@ -6,7 +6,7 @@
         <div v-for="(entry, index) in computedContent" :key="index">
           <base-image
             :mods="['grid']"
-            :img="entry.primary.image"
+            :img="entry"
             :sizes="'(min-width: 600px) 480px, 920px'"
           />
         </div>
