@@ -21,7 +21,22 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 0 calc(18 / #{$base-width} * 100%);
+  padding: 10px calc(18 / #{$base-width} * 100%);
+  transition: background 200ms ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &.cols-headRow {
+    &:hover {
+      background: none;
+    }
+
+    span {
+      cursor: pointer;
+    }
+  }
 
   .col {
     &.col-1 {

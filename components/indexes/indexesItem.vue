@@ -36,7 +36,7 @@ export default {
   components: {},
   props: {
     e: {
-      type: [Array, String],
+      type: [Object],
       default: () => []
     }
   },

@@ -1,13 +1,15 @@
 <template>
   <page :mods="['index']">
     <div class="page-close"><nuxt-link to="/">Close</nuxt-link></div>
-    <indexes :content="content" />
+    <indexes :content="mod_content" />
   </page>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  async asyncData({ $prismic, error }) {
+  async asyncData({ $prismic, error, store }) {
     const documents = await $prismic.api.query(
       $prismic.predicates.at('document.type', 'artists'),
       {
@@ -26,8 +28,6 @@ export default {
 
         images.unshift(poster)
 
-        console.log(doc.data)
-
         return {
           cat_no: doc.data?.cat_no ? doc.data.cat_no : '',
           title: doc.data?.title ? $prismic.asText(doc.data.title) : '',
@@ -41,9 +41,25 @@ export default {
         }
       })
 
-      return { docs, content }
+      store.commit('ui/entries', content)
     } else {
       error({ statusCode: 404, message: 'Post not found' })
+    }
+  },
+  computed: mapState({
+    mod_content: (state) => state.ui.content,
+    sort: (state) => state.ui.sortBy
+  }),
+  watch: {
+    sort(newValue, oldValue) {
+      if (newValue !== '') {
+        this.sortIndex(newValue)
+      }
+    }
+  },
+  methods: {
+    sortIndex(obj) {
+      this.$store.commit('ui/sortContent', [obj.sortBy, obj.direction])
     }
   }
 }
