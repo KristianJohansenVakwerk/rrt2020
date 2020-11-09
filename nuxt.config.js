@@ -21,17 +21,12 @@ export default {
    */
   loading: false,
 
-  generate: {
-    routes() {
-      return ['crawlme']
-    }
-  },
-
   /*
    ** Global CSS
    */
   css: [
     { lang: 'scss', src: '~styles/index.scss' }
+
     // { lang: 'scss', src: '~assets/fonts/fonts.scss' }
   ],
   /*
@@ -40,7 +35,8 @@ export default {
   plugins: [
     { src: '~/plugins/base-ui' },
     { src: '~/components/index' },
-    { src: '~/plugins/anime' }
+    { src: '~/plugins/anime' },
+    { src: '~/plugins/vue-swiper-plugin', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

@@ -1,6 +1,6 @@
 <template>
   <div class="cols">
-    <span class="col col-1" v-html="e.cat_no" />
+    <span class="col col-1" v-html="`${e.cat_no}`" />
     <span class="col col-2" v-html="e.artist" />
     <span class="col col-3" v-html="e.press" />
     <span class="col col-4" v-html="e.title" />
@@ -19,13 +19,13 @@
 
     <span class="col col-full">
       <div class="images">
-        <div v-for="(i, key) in e.images" :key="key">
+        <!-- <div v-for="(i, key) in e.images" :key="key">
           <base-image
             :mods="['index']"
             :img="i"
             :sizes="'(min-width: 600px) 920px, 1280ox'"
           />
-        </div>
+        </div> -->
       </div>
     </span>
   </div>

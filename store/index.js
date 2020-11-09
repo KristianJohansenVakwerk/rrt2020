@@ -1,3 +1,5 @@
 export const actions = {
-  nuxtServerInit({ dispatch }, context) {}
+  async nuxtServerInit({ dispatch }, context) {
+    await dispatch('ui/loadEntries', context)
+  }
 }

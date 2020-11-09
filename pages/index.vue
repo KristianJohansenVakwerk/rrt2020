@@ -22,8 +22,9 @@ export default {
       for (let i = 0; i < docs.length; i++) {
         const doc = docs[i]
         const poster = doc.data.musaic_image
+        const posterId = doc.uid
 
-        content.push(poster)
+        content.push({ poster, posterId })
       }
 
       return { docs, content }
