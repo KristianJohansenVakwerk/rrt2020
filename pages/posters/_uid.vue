@@ -3,17 +3,20 @@
     <div class="page-slideshow">
       <slideshow
         :slides="slides"
+        :all-slides="allSlides"
+        :uid="uid"
         :mods="['gallery']"
-        :active-index="activeIndex"
         :options="{
           autoplay: true,
           loop: false,
+          slidesPerView: 2,
+          centeredSlides: true,
+          spaceBetween: '25%',
           keyboard: {
             enabled: true,
             onlyInViewport: true
           },
-          preloadImages: false,
-          lazy: true
+          preloadImages: false
         }"
       />
     </div>
@@ -26,56 +29,29 @@ export default {
     const uid = params.uid
     const data = store.state.ui.original_content
 
-    // const doc = await store.state.ui.original_content.filter(
-    //   (entry) => entry.uid === uid
-    // )
+    const activePoster = await data.filter((entry) => entry.uid === uid)
 
-    // const prevIndex = content[0].index - 1
-    // // const nextIndex = content[0].index + 1
+    const slides = activePoster[0].images.map((img) => {
+      return { image: img }
+    })
 
-    // const prevEntry = data
-    //   .map((e) => {
-    //     return e
-    //   })
-    //   .indexOf(prevIndex)
-
-    // content.concat({ entry: prevEntry, ix: prevIndex })
-    // content.push({ entry: data[nextIndex], ix: nextIndex })
-
-    // const slides = data.map((entry) => {
-    //   return entry.images.map((img) => {
-    //     return {
-    //       slide: img
-    //     }
-    //   })
-    // })
-    const slides = []
+    const allSlides = []
 
     for (let i = 0; i < data.length; i++) {
       const entry = data[i]
-      let active = false
-
-      if (entry.uid === uid) {
-        active = true
-      }
+      const images = []
 
       for (let j = 0; j < entry.images.length; j++) {
         const img = entry.images[j]
-        const activeSlide = j === 0 ? active : false
-        slides.push({ image: img, id: entry.uid + j, activeSlide })
+
+        images.push({ image: img, uid: entry.uid })
       }
+
+      allSlides.push({ index: i, uid: entry.uid, images })
     }
 
-    let activeIndex
-    await slides.some(function(entry, i) {
-      if (entry.activeSlide) {
-        activeIndex = i
-        return true
-      }
-    })
-
     if (data.length) {
-      return { slides, activeIndex }
+      return { slides, allSlides, uid }
     } else {
       error({ statusCode: 404, message: 'Post not found' })
     }

@@ -7,9 +7,13 @@
 }
 
 .page {
+  background: white;
+  padding-top: 60px;
+  z-index: 1050;
   .page-slideshow {
     width: 100vw;
-    height: 80vh;
+    height: calc(100vh - 110px);
+
     position: relative;
   }
 }

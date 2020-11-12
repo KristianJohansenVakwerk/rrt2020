@@ -9,16 +9,11 @@ export const state = () => defaultState
 
 export const actions = {
   async loadEntries({ commit }, context) {
-    const documents = await context.$prismic.api.query(
-      context.$prismic.predicates.at('document.type', 'artists'),
-      {
-        pageSize: 100
-      }
-    )
+    const data = await getPages(context)
 
-    if (documents.results.length) {
-      const docs = documents.results
+    const docs = data[0].concat(data[1])
 
+    if (docs.length) {
       const content = docs.map((doc) => {
         const poster = doc.data.musaic_image
 
@@ -103,4 +98,27 @@ export const mutations = {
         })
     }
   }
+}
+
+const getPages = async (context) => {
+  const data = []
+  let pageNum = 1
+  let lastResult = []
+
+  do {
+    const resp = await context.$prismic.api.query(
+      context.$prismic.predicates.at('document.type', 'artists'),
+      {
+        pageSize: 100,
+        page: pageNum
+      }
+    )
+    lastResult = resp
+
+    data.push(resp.results)
+
+    pageNum++
+  } while (lastResult.next_page !== null)
+
+  return data
 }
