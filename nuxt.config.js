@@ -49,7 +49,11 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/style-resources', '@nuxtjs/svg'],
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/svg',
+    'vue-social-sharing/nuxt'
+  ],
 
   styleResources: {
     scss: ['~styles/_constants.scss', '~styles/mixins/*.scss']

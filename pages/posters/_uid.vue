@@ -48,7 +48,7 @@ export default {
         images.push({ image: img, uid: entry.uid })
       }
 
-      allSlides.push({ index: i, uid: entry.uid, images })
+      allSlides.push({ index: i, uid: entry.uid, images, entry })
     }
 
     if (data.length) {

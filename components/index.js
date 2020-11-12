@@ -11,6 +11,7 @@ import draggable from './draggable/draggable.vue'
 import indexes from './indexes/indexes.vue'
 import indexesItem from './indexes/indexesItem.vue'
 import slideshow from './slideshow/slideshow.vue'
+import share from './share/share.vue'
 
 Vue.component('siteFooter', Footer)
 Vue.component('siteHeader', Header)
@@ -18,5 +19,6 @@ Vue.component('page', page)
 Vue.component('indexes', indexes)
 Vue.component('indexesItem', indexesItem)
 Vue.component('slideshow', slideshow)
+Vue.component('share', share)
 Vue.component('svg-loader', svgLoader)
 Vue.component('draggable', draggable)

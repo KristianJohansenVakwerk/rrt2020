@@ -1,0 +1,56 @@
+<style lang="scss" src="./share.scss"></style>
+<template>
+  <div class="share">
+    <ShareNetwork
+      network="facebook"
+      :url="url"
+      :title="title"
+      :description="description"
+      :hashtags="tag"
+    >
+      <span :class="`icon icon-${network}`">{{ network }} {{ url }}</span>
+    </ShareNetwork>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {},
+  props: {
+    e: {
+      type: [Object],
+      default: () => {}
+    },
+    type: {
+      type: [String],
+      default: () => ''
+    },
+    network: {
+      type: [String],
+      default: () => ''
+    }
+  },
+  data() {
+    return {}
+  },
+  computed: {
+    title() {
+      return this.e.title
+    },
+    tag() {
+      return this.e.tag
+    },
+    description() {
+      return `RTT 2020 is exhibition blah blah`
+    },
+    url() {
+      if (this.type === 'slideshow') {
+        return `https://lucid-bardeen-23f185.netlify.app/posters/${this.e.uid}`
+      } else {
+        return 'https://lucid-bardeen-23f185.netlify.app/'
+      }
+    }
+  },
+  methods: {}
+}
+</script>

@@ -1,35 +1,37 @@
 <style lang="scss" src="./slideshow.scss"></style>
 <template>
-  <div
-    ref="slideshow"
-    v-swiper="computedOptions"
-    class="slideshow"
-    :class="[computedMods]"
-    @slideChangeTransitionStart="transEnd()"
-  >
-    <div class="slideshow-wrapper swiper-wrapper">
-      <div
-        v-for="(slide, index) in activeSlides"
-        :key="index"
-        class="slideshow-slide swiper-slide"
-        :data-uid="slide.uid"
-        :data-index="index"
-      >
-        <base-image :img="slide.image" :mods="['slideshow']" />
+  <div>
+    <share
+      v-if="activeEntry !== null"
+      :e="activeEntry[0].entry"
+      type="slideshow"
+      network="facebook"
+    />
+    <div
+      ref="slideshow"
+      v-swiper="computedOptions"
+      class="slideshow"
+      :class="[computedMods]"
+      @slideChangeTransitionStart="transEnd()"
+      @touchStart="touchStart()"
+      @touchEnd="touchEnd()"
+    >
+      <div class="slideshow-wrapper swiper-wrapper">
+        <div
+          v-for="(slide, index) in activeSlides"
+          :key="index"
+          class="slideshow-slide swiper-slide"
+          :data-uid="slide.uid"
+          :data-index="index"
+        >
+          <base-image :img="slide.image" :mods="['slideshow']" />
+        </div>
       </div>
     </div>
-
-    <div class="slideshow-prev" @click="navigation('prev')">
-      prev
-      <!-- <icon-base icon-name="arrow-prev" width="24" height="21">
-        <icon-arrow-prev />
-      </icon-base> -->
-    </div>
-    <div class="slideshow-next" @click="navigation('next')">
-      next
-      <!-- <icon-base icon-name="arrow-next" width="24" height="21">
-        <icon-arrow-next />
-      </icon-base> -->
+    <div v-if="activeEntry !== null">
+      <ul class="indexes indexes-slideshow">
+        <li><indexesItem :e="activeEntry[0].entry" /></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -100,6 +102,12 @@ export default {
     }, 100)
   },
   methods: {
+    touchStart() {
+      this.$refs.slideshow.classList.add('grabbing')
+    },
+    touchEnd() {
+      this.$refs.slideshow.classList.remove('grabbing')
+    },
     transEnd() {
       this.checkSlides(false)
     },
@@ -121,14 +129,12 @@ export default {
         const prevSlides = this.allSlides[prevIndex]
 
         if (this.activeIndex === 0) {
-          console.log('if')
           const nextHtml = nextSlides.images.map((slide, index) => {
             return `<div class="slideshow-slide swiper-slide" data-uid="${slide.uid}" data-index="${index}"><figure class="image image-slideshow"><img src="${slide.image.url}" loading="lazy" class="lazyload" /></figure> </div>`
           })
 
           this.$swiper.appendSlide(nextHtml)
         } else if (this.activeIndex === this.allSlides.length - 1) {
-          console.log('else if')
           const prevHtml = prevSlides.images.map((slide, index) => {
             return `<div class="slideshow-slide swiper-slide" data-uid="${slide.uid}" data-index="${index}"><figure class="image image-slideshow"><img src="${slide.image.url}" loading="lazy" class="lazyload" /></figure> </div>`
           })
@@ -137,7 +143,6 @@ export default {
 
           this.$swiper.prependSlide(reversed)
         } else {
-          console.log('else')
           const nextHtml = nextSlides.images.map((slide, index) => {
             return `<div class="slideshow-slide swiper-slide" data-uid="${slide.uid}" data-index="${index}"><figure class="image image-slideshow"><img src="${slide.image.url}" loading="lazy" class="lazyload" /></figure> </div>`
           })
@@ -164,6 +169,8 @@ export default {
         if (direction === 'next') {
           if (currentUid !== prevUid && parseInt(currentIndex) === 0) {
             this.activeIndex += 1
+
+            this.updateActiveEntry(this.activeIndex)
           }
 
           if (
@@ -172,8 +179,6 @@ export default {
             (this.allSlides[this.activeIndex].images.length === 1 &&
               this.$swiper.activeIndex === this.$swiper.slides.length - 1)
           ) {
-            console.log('append slides')
-
             const newSlides = this.allSlides[this.activeIndex + 1]
 
             if (newSlides !== undefined) {
@@ -193,11 +198,12 @@ export default {
               this.allSlides[this.activeIndex - 1].images.length - 1
           ) {
             this.activeIndex -= 1
+            // this.activeEntry = this.allSlides[this.activeIndex]
+
+            this.updateActiveEntry(this.activeIndex)
           }
 
           if (this.$swiper.activeIndex === 0) {
-            console.log('prepend slides')
-
             const newSlides = this.allSlides[this.activeIndex - 1]
 
             if (newSlides !== undefined && this.activeIndex !== 0) {
@@ -214,27 +220,17 @@ export default {
           }
         }
       }
+    },
+    updateActiveEntry(index) {
+      this.activeEntry = this.allSlides.filter((entry) => entry.index === index)
 
-      console.log(
-        'activeIndex',
-        this.$swiper.activeIndex,
-        'previousIndex',
-        this.$swiper.previousIndex,
-        'active Entry images length',
-        this.activeEntry[0].images.length,
-        'swiper current length',
-        this.$swiper.slides.length,
-        'active entry index',
-        this.activeIndex
-      )
+      history.pushState({}, null, this.activeEntry[0].uid)
     },
     navigation(dir) {
       if (dir === 'prev') {
         this.$swiper.slidePrev()
       } else {
         this.$swiper.slideNext()
-
-        // history.pushState({}, null, 'resist')
       }
     }
   }

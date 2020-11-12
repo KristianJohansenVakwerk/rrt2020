@@ -3,6 +3,12 @@
     border-top: 1px solid black;
   }
 
+  &.indexes-slideshow {
+    .col-full {
+      display: none;
+    }
+  }
+
   .images {
     display: flex;
     justify-content: flex-start;
