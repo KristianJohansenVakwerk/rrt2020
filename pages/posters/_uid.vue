@@ -12,6 +12,7 @@
           slidesPerView: 2,
           centeredSlides: true,
           spaceBetween: '25%',
+          speed: 0,
           keyboard: {
             enabled: true,
             onlyInViewport: true
