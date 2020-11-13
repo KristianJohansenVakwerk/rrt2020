@@ -25,12 +25,16 @@
 </template>
 
 <script>
+import { getPageHead } from '~/utils/page_util'
+
 export default {
   async asyncData({ $prismic, error, store, params }) {
     const uid = params.uid
     const data = store.state.ui.original_content
 
     const activePoster = await data.filter((entry) => entry.uid === uid)
+
+    const pageHead = getPageHead(activePoster[0], $prismic)
 
     const slides = activePoster[0].images.map((img) => {
       return { image: img }
@@ -52,11 +56,14 @@ export default {
     }
 
     if (data.length) {
-      return { slides, allSlides, uid }
+      return { pageHead, slides, allSlides, uid }
     } else {
       error({ statusCode: 404, message: 'Post not found' })
     }
   },
-  computed: {}
+  computed: {},
+  head() {
+    return this.pageHead
+  }
 }
 </script>
