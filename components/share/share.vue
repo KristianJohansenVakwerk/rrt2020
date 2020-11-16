@@ -5,10 +5,10 @@
       network="facebook"
       :url="url"
       :title="title"
-      :description="description"
+      :quote="description"
       :hashtags="tag"
     >
-      <span :class="`icon icon-${network}`">{{ network }} {{ url }}</span>
+      <span :class="`icon icon-${network}`">{{ network }} {{ tag }}</span>
     </ShareNetwork>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
       return this.e.title
     },
     tag() {
-      return this.e.tag
+      return this.e.tag.replace('#', '')
     },
     description() {
       return `RTT 2020 is exhibition blah blah`

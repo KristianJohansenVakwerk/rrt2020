@@ -4,10 +4,10 @@
     <div id="drag" class="draggable-bounds">
       <div class="drag">
         <div v-for="(entry, index) in computedContent" :key="index">
-          <nuxt-link :to="`posters/${entry.posterId}`">
+          <nuxt-link :to="`posters/${entry.uid}`">
             <base-image
               :mods="['grid']"
-              :img="entry.poster"
+              :img="entry.images[0]"
               :sizes="'(min-width: 600px) 480px, 920px'"
             />
           </nuxt-link>

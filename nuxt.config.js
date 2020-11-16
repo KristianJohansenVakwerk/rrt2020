@@ -20,7 +20,11 @@ export default {
    ** Customize the progress-bar color
    */
   loading: false,
-
+  generate: {
+    routes() {
+      return ['crawlme']
+    }
+  },
   /*
    ** Global CSS
    */

@@ -9,9 +9,9 @@ export const state = () => defaultState
 
 export const actions = {
   async loadEntries({ commit }, context) {
-    const data = await getPages(context)
+    const docs = await getPages(context)
 
-    const docs = data[0].concat(data[1])
+    // const docs = data[0].concat(data[1])
 
     if (docs.length) {
       const content = docs.map((doc) => {
@@ -101,24 +101,32 @@ export const mutations = {
 }
 
 const getPages = async (context) => {
-  const data = []
-  let pageNum = 1
-  let lastResult = []
+  // const data = []
+  // const pageNum = 1
+  // const lastResult = []
 
-  do {
-    const resp = await context.$prismic.api.query(
-      context.$prismic.predicates.at('document.type', 'artists'),
-      {
-        pageSize: 100,
-        page: pageNum
-      }
-    )
-    lastResult = resp
+  // do {
+  //   const resp = await context.$prismic.api.query(
+  //     context.$prismic.predicates.at('document.type', 'artists'),
+  //     {
+  //       pageSize: 100,
+  //       page: pageNum
+  //     }
+  //   )
+  //   lastResult = resp
 
-    data.push(resp.results)
+  //   data.push(resp.results)
 
-    pageNum++
-  } while (lastResult.next_page !== null)
+  //   pageNum++
+  // } while (lastResult.next_page !== null)
 
-  return data
+  const resp = await context.$prismic.api.query(
+    context.$prismic.predicates.at('document.type', 'artists'),
+    {
+      pageSize: 100
+      // page: pageNum
+    }
+  )
+
+  return resp.results
 }
