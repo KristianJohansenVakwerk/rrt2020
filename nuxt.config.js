@@ -52,7 +52,9 @@ export default {
   modules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/svg',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    '@/modules/static',
+    '@/modules/crawler'
   ],
 
   styleResources: {
