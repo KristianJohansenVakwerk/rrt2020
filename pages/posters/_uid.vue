@@ -1,7 +1,8 @@
 <template>
   <page :mods="['index']">
     <div class="page-slideshow">
-      <slideshow
+      {{ images }}
+      <!-- <slideshow
         :slides="slides"
         :all-slides="allSlides"
         :uid="uid"
@@ -19,7 +20,7 @@
           },
           preloadImages: false
         }"
-      />
+      /> -->
     </div>
   </page>
 </template>
@@ -28,35 +29,46 @@
 import { getPageHead } from '~/utils/page_util'
 
 export default {
-  async asyncData({ store, params }) {
-    const uid = params.uid
-    const data = store.state.ui.original_content
+  async asyncData({ $prismic, store, params }) {
+    // const uid = params.uid
+    // const data = store.state.ui.original_content
 
-    const activePoster = await data.filter((entry) => entry.uid === uid)
+    // const activePoster = await data.filter((entry) => entry.uid === uid)
 
-    const pageHead = getPageHead(activePoster[0])
+    const doc = await $prismic.api.getByUID('artists', params.uid)
 
-    const slides = activePoster[0].images.map((img) => {
-      return { image: img }
+    const pageHead = getPageHead(doc.data, $prismic)
+
+    const poster = doc.data.musaic_image
+    // console.log(musaic_image)
+
+    const images = doc.data.body.map((slice) => {
+      return slice.primary.image
     })
 
-    const allSlides = []
+    images.unshift(poster)
 
-    for (let i = 0; i < data.length; i++) {
-      const entry = data[i]
-      const images = []
+    // const slides = activePoster[0].images.map((img) => {
+    //   return { image: img }
+    // })
 
-      for (let j = 0; j < entry.images.length; j++) {
-        const img = entry.images[j]
+    // const allSlides = []
 
-        images.push({ image: img, uid: entry.uid })
-      }
+    // for (let i = 0; i < data.length; i++) {
+    //   const entry = data[i]
+    //   const images = []
 
-      allSlides.push({ index: i, uid: entry.uid, images, entry })
-    }
+    //   for (let j = 0; j < entry.images.length; j++) {
+    //     const img = entry.images[j]
 
-    if (activePoster[0]) {
-      return { pageHead, slides, allSlides, uid }
+    //     images.push({ image: img, uid: entry.uid })
+    //   }
+
+    //   allSlides.push({ index: i, uid: entry.uid, images, entry })
+    // }
+
+    if (doc) {
+      return { pageHead, images }
     }
   },
   computed: {},

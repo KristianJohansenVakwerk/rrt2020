@@ -13,7 +13,7 @@ export default function(doc) {
     return 'crawlme'
   }
 
-  if (doc.type === 'posters') {
+  if (doc.type === 'artists') {
     return '/posters/' + doc.uid
   }
 
