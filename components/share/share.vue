@@ -2,13 +2,13 @@
 <template>
   <div class="share">
     <ShareNetwork
-      network="facebook"
+      :network="network"
       :url="url"
       :title="title"
       :quote="description"
       :hashtags="tag"
     >
-      <span :class="`icon icon-${network}`">{{ network }} {{ tag }}</span>
+      <span :class="`icon icon-${network}`">{{ network }}</span>
     </ShareNetwork>
   </div>
 </template>

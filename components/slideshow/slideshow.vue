@@ -1,12 +1,21 @@
 <style lang="scss" src="./slideshow.scss"></style>
 <template>
   <div>
-    <share
-      v-if="activeEntry !== null"
-      :e="activeEntry[0].entry"
-      type="slideshow"
-      network="facebook"
-    />
+    <div class="slideshow-share">
+      <share
+        v-if="activeEntry !== null"
+        :e="activeEntry[0].entry"
+        type="slideshow"
+        network="facebook"
+      />
+
+      <share
+        v-if="activeEntry !== null"
+        :e="activeEntry[0].entry"
+        type="slideshow"
+        network="twitter"
+      />
+    </div>
     <div
       ref="slideshow"
       v-swiper="computedOptions"
@@ -224,7 +233,7 @@ export default {
     updateActiveEntry(index) {
       this.activeEntry = this.allSlides.filter((entry) => entry.index === index)
 
-      history.pushState({}, null, this.activeEntry[0].uid)
+      history.pushState({}, null, `/posters/${this.activeEntry[0].uid}`)
     },
     navigation(dir) {
       if (dir === 'prev') {

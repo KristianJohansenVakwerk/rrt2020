@@ -50,4 +50,13 @@
       }
     }
   }
+
+  .slideshow-share {
+    position: fixed;
+    width: auto;
+    height: auto;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
 }
