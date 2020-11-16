@@ -1,27 +1,20 @@
 export const getPageHead = (document, $prismic) => {
   document = document || { data: {} }
   const seo = {
-    url: `https://lucid-bardeen-23f185.netlify.app/${document.uid}`,
-    title: $prismic.asText(document.title) || 'RTT 2020',
+    title: document.title || 'RTT 2020',
     description:
-      $prismic.asText(document.description) ||
-      'RTT 2020 is an exhibition that blah blah'
+      document.description || 'RTT 2020 is an exhibition that blah blah'
   }
   const og = {
     title: document.title || 'RTT 2020',
     description:
-      $prismic.asText(document.description) ||
-      'RTT 2020 is an exhibition that blah blah',
-    image: document.musaic_image?.url
+      document.description || 'RTT 2020 is an exhibition that blah blah',
+    image: document.images[0]?.url
   }
 
   return {
     title: seo.title,
     meta: [
-      seo.url && {
-        property: 'og:url',
-        content: seo.url
-      },
       seo.description && {
         hid: 'description',
         name: 'description',

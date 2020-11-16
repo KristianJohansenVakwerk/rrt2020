@@ -1,8 +1,7 @@
 <template>
   <page :mods="['index']">
     <div class="page-slideshow">
-      {{ images }}
-      <!-- <slideshow
+      <slideshow
         :slides="slides"
         :all-slides="allSlides"
         :uid="uid"
@@ -20,7 +19,7 @@
           },
           preloadImages: false
         }"
-      /> -->
+      />
     </div>
   </page>
 </template>
@@ -30,45 +29,34 @@ import { getPageHead } from '~/utils/page_util'
 
 export default {
   async asyncData({ $prismic, store, params }) {
-    // const uid = params.uid
-    // const data = store.state.ui.original_content
+    const uid = params.uid
+    const data = store.state.ui.original_content
 
-    // const activePoster = await data.filter((entry) => entry.uid === uid)
+    const activePoster = await data.filter((entry) => entry.uid === uid)
 
-    const doc = await $prismic.api.getByUID('artists', params.uid)
+    const pageHead = getPageHead(activePoster[0])
 
-    const pageHead = getPageHead(doc.data, $prismic)
-
-    const poster = doc.data.musaic_image
-    // console.log(musaic_image)
-
-    const images = doc.data.body.map((slice) => {
-      return slice.primary.image
+    const slides = activePoster[0].images.map((img) => {
+      return { image: img }
     })
 
-    images.unshift(poster)
+    const allSlides = []
 
-    // const slides = activePoster[0].images.map((img) => {
-    //   return { image: img }
-    // })
+    for (let i = 0; i < data.length; i++) {
+      const entry = data[i]
+      const images = []
 
-    // const allSlides = []
+      for (let j = 0; j < entry.images.length; j++) {
+        const img = entry.images[j]
 
-    // for (let i = 0; i < data.length; i++) {
-    //   const entry = data[i]
-    //   const images = []
+        images.push({ image: img, uid: entry.uid })
+      }
 
-    //   for (let j = 0; j < entry.images.length; j++) {
-    //     const img = entry.images[j]
+      allSlides.push({ index: i, uid: entry.uid, images, entry })
+    }
 
-    //     images.push({ image: img, uid: entry.uid })
-    //   }
-
-    //   allSlides.push({ index: i, uid: entry.uid, images, entry })
-    // }
-
-    if (doc) {
-      return { pageHead, images }
+    if (activePoster.length) {
+      return { pageHead, slides, allSlides, uid }
     }
   },
   computed: {},
