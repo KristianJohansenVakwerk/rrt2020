@@ -1,6 +1,12 @@
 <style lang="scss" src="./slideshow.scss"></style>
 <template>
   <div>
+    <share
+      v-if="activeEntry !== null"
+      :e="activeEntry[0].entry"
+      type="slideshow"
+      network="facebook"
+    />
     <div
       ref="slideshow"
       v-swiper="computedOptions"
