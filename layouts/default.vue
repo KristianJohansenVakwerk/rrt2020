@@ -1,7 +1,7 @@
 <template>
   <div>
     <info />
-    <siteHeader v-if="!showLoader" />
+    <!-- <siteHeader v-if="!showLoader" /> -->
 
     <transition name="fade">
       <svg-loader v-if="showLoader" :key="'loader'" />

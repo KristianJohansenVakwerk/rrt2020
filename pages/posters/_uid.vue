@@ -60,6 +60,9 @@ export default {
     }
   },
   computed: {},
+  mounted() {
+    this.$store.commit('ui/hideInfoFromPage', true)
+  },
   head() {
     return this.pageHead
   }

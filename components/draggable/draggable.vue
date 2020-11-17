@@ -3,10 +3,14 @@
   <div class="draggable">
     <div id="drag" class="draggable-bounds">
       <div class="drag">
-        <div v-for="(entry, index) in computedContent" :key="index">
+        <div
+          v-for="(entry, index) in computedContent"
+          :key="index"
+          :class="[entry.poster_size, computedAlign]"
+        >
           <nuxt-link :to="`posters/${entry.uid}`">
             <base-image
-              :mods="['grid']"
+              :mods="['grid', 'musaic']"
               :img="entry.images[0]"
               :sizes="'(min-width: 600px) 480px, 920px'"
             />
@@ -44,6 +48,13 @@ export default {
   computed: {
     computedContent() {
       return this.content
+    },
+    computedAlign() {
+      const possible = ['flex-start', 'center', 'flex-end']
+
+      const random = Math.floor(Math.random() * possible.length)
+
+      return possible[random]
     }
   },
   mounted() {

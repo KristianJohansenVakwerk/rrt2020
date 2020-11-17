@@ -12,7 +12,10 @@ export default {
     getPosters(state) {
       return state.ui.content
     }
-  })
+  }),
+  mounted() {
+    this.$store.commit('ui/hideInfoFromPage', false)
+  }
   // fetch({ store, params }) {
   //   if (typeof (store.state.products.byId[params.id]) === 'undefined') {
   //     return store.dispatch('products/loadProduct', {id: params.id});

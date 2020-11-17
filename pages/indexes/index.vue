@@ -30,6 +30,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$store.commit('ui/hideInfoFromPage', true)
+  },
   methods: {
     sortIndex(obj) {
       this.$store.commit('ui/sortContent', [obj.sortBy, obj.direction])

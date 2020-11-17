@@ -3,6 +3,7 @@ const defaultState = {
   sortBy: {},
   content: [],
   original_content: [],
+  hideInfoFromPage: false,
   showInfo: false,
   globals: null,
   slideShowInfo: false
@@ -40,6 +41,9 @@ export const actions = {
           country_code: doc.data?.country_code ? doc.data.country_code : '',
           tag: doc.data?.tag ? doc.data.tag : '',
           list_no: doc.data?.list_number ? doc.data.list_number : '',
+          poster_size: doc.data?.musaic_image_size
+            ? doc.data.musaic_image_size
+            : '',
           images: images.length ? images : []
         }
       })
@@ -69,6 +73,9 @@ export const actions = {
 }
 
 export const mutations = {
+  hideInfoFromPage(state, payload) {
+    state.hideInfoFromPage = payload
+  },
   activateSlideshowInfo(state, payload) {
     state.slideShowInfo = payload
   },

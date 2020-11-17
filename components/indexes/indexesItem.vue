@@ -12,7 +12,7 @@
     </span>
     <span
       class="col col-5 col-dimensions"
-      v-html="`${e.width} cm, ${e.height} cm`"
+      v-html="`${e.width} x ${e.height} cm`"
     />
     <span class="col col-6 col-country_code" v-html="e.country_code" />
     <span class="col col-7 col-tag" v-html="e.tag" />
