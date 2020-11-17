@@ -1,0 +1,22 @@
+.share {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  width: fit-content;
+  height: auto;
+  cursor: pointer;
+
+  &.share-facebook {
+    width: 27px;
+    height: 23.73px;
+  }
+
+  &.share-twitter {
+    top: auto;
+    left: auto;
+    bottom: 11px;
+    right: 12px;
+    width: 24px;
+    height: 19.5px;
+  }
+}

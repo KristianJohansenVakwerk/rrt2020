@@ -1,0 +1,25 @@
+.info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-100%);
+  background: white;
+  transition: transform 300ms ease;
+  z-index: 10001;
+  padding: 25px 0.520835%;
+
+  &.show {
+    transform: translateY(0);
+  }
+
+  .info-close {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    width: fit-content;
+    height: auto;
+    cursor: pointer;
+  }
+}

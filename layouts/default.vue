@@ -1,5 +1,6 @@
 <template>
   <div>
+    <info />
     <siteHeader v-if="!showLoader" />
 
     <transition name="fade">
@@ -39,7 +40,12 @@ export default {
       this.showLoader = newValue
     },
     $route(newValue, oldValue) {
-      const trans = transitions(newValue.name)
+      let value = newValue.name
+
+      if (oldValue.name === 'posters-uid') {
+        value = 'from-poster'
+      }
+      const trans = transitions(value)
 
       this.type = trans.type
       this.mode = trans.mode

@@ -12,9 +12,5 @@ export default function(doc) {
     return '/posters/' + doc.uid
   }
 
-  if (doc.uid === 'info') {
-    return '/info'
-  }
-
   return '/'
 }

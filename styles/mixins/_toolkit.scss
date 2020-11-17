@@ -13,3 +13,81 @@
 @mixin debug($rgb: #f0f) {
   box-shadow: 0 0 0.5px rgba($rgb, 1);
 }
+
+/***Grid
+***/
+
+// Pixels to % vars Desktop
+$desk-grid-width: 100% -
+  (($grid-desktop-sideMargins * 2 / $grid-desktop-breakpoint) * 100%);
+$desk-gutter: (
+  (
+    $grid-desktop-gutter /
+      ($grid-desktop-breakpoint - ($grid-desktop-sideMargins * 2)) * 100%
+  )
+);
+
+// Pixels to % vars Tablet
+$tab-grid-width: 100% -
+  (($grid-tablet-sideMargins * 2 / $grid-tablet-breakpoint) * 100%);
+$tab-gutter: (
+  (
+    $grid-tablet-gutter /
+      ($grid-tablet-breakpoint - ($grid-tablet-sideMargins * 2)) * 100%
+  )
+);
+
+// Pixels to % vars Mobile
+$mob-grid-width: 100% -
+  (($grid-mobile-sideMargins * 2 / $grid-mobile-breakpoint) * 100%);
+$mob-gutter: (
+  (
+    $grid-mobile-gutter /
+      ($grid-mobile-breakpoint - ($grid-mobile-sideMargins * 2)) * 100%
+  )
+);
+
+@function col-width($i, $columns) {
+  @return 100% / $columns * $i;
+}
+
+@mixin col-props($i, $columns, $gutter) {
+  box-sizing: border-box;
+  width: col-width($i, $columns);
+  padding-left: $gutter/2;
+  padding-right: $gutter/2;
+}
+
+@mixin columns-loop($name, $columns, $gutter) {
+  @for $i from 0 through $columns {
+    &-#{$name}-#{$i} {
+      @include col-props($i, $columns, $gutter);
+    }
+    &-#{$name}-offset-#{$i} {
+      margin-left: col-width($i, $columns);
+    }
+    &-clear-#{$i} {
+      margin-right: calc(100% - #{col-width($i, $columns)});
+
+      @include for-mobile {
+        margin-right: 0;
+      }
+    }
+    &-#{$name}-none {
+      display: none;
+    }
+  }
+}
+
+@mixin grid-base($width, $maxWidth: false) {
+  box-sizing: border-box;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  width: $width;
+
+  @if $maxWidth {
+    max-width: $grid-desktop-breakpoint;
+  }
+}

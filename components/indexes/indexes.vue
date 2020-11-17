@@ -1,6 +1,6 @@
 <style lang="scss" src="./indexes.scss"></style>
 <template>
-  <ul class="indexes">
+  <ul id="indexList" class="indexes">
     <li>
       <div class="cols cols-headRow">
         <span
@@ -9,19 +9,31 @@
           :class="['col', `col-${index + 1}`]"
         >
           <span @click="sortContent(e.sort, e.sortBy, index)" v-html="e.name" />
-          <span v-html="e.direction" />
+
+          <span v-if="e.direction === 'asc' && e.direction !== ''" class="sort">
+            <arrowUp />
+          </span>
+
+          <span
+            v-if="e.direction === 'desc' && e.direction !== ''"
+            class="sort"
+          >
+            <arrowDown />
+          </span>
         </span>
       </div>
     </li>
     <li v-for="(e, index) in content" :key="index">
-      <indexesItem :e="e" />
+      <indexesItem :e="e" :index="index" :active-row="activeIndex" />
     </li>
   </ul>
 </template>
 
 <script>
+import arrowDown from '~/components/icons/arrowDown.svg?inline'
+import arrowUp from '~/components/icons/arrowUp.svg?inline'
 export default {
-  components: {},
+  components: { arrowDown, arrowUp },
   props: {
     content: {
       type: [Array, String],
@@ -30,6 +42,7 @@ export default {
   },
   data() {
     return {
+      activeIndex: -1,
       headRow: [
         {
           name: 'Cat.',
@@ -76,12 +89,16 @@ export default {
     }
   },
   methods: {
+    updateActive(index) {
+      this.activeIndex = index
+    },
     sortContent(canSort, sortBy, index) {
       if (canSort) {
         const direction =
           this.headRow[index].direction === 'asc' ? 'desc' : 'asc'
 
         this.headRow[index].direction = direction
+        this.activeIndex = -1
 
         this.$store.commit('ui/sort', [sortBy, direction])
       }

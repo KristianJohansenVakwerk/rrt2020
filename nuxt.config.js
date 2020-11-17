@@ -25,9 +25,8 @@ export default {
    ** Global CSS
    */
   css: [
-    { lang: 'scss', src: '~styles/index.scss' }
-
-    // { lang: 'scss', src: '~assets/fonts/fonts.scss' }
+    { lang: 'scss', src: '~styles/index.scss' },
+    { lang: 'scss', src: '~assets/fonts/fonts.scss' }
   ],
   /*
    ** Plugins to load before mounting the App

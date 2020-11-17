@@ -1,4 +1,5 @@
 export const transitions = (name) => {
+  console.log(name)
   switch (name) {
     case 'index':
       return { type: 'lightbox-down', mode: 'out-in' }

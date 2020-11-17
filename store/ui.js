@@ -2,7 +2,10 @@ const defaultState = {
   loaderStatus: true,
   sortBy: {},
   content: [],
-  original_content: []
+  original_content: [],
+  showInfo: false,
+  globals: null,
+  slideShowInfo: false
 }
 
 export const state = () => defaultState
@@ -28,6 +31,9 @@ export const actions = {
           cat_no: doc.data?.cat_no_letter ? doc.data.cat_no_letter : '',
           title: doc.data?.title ? context.$prismic.asText(doc.data.title) : '',
           artist: doc.data?.artist_name ? doc.data.artist_name : '',
+          description: doc.data?.description
+            ? context.$prismic.asHtml(doc.data.description)
+            : '',
           press: doc.data?.press ? doc.data.press : '',
           width: doc.data?.width ? doc.data.width : '',
           height: doc.data?.height ? doc.data.height : '',
@@ -41,17 +47,42 @@ export const actions = {
       commit('entries', content)
     }
   },
+  async loadGlobals({ commit }, context) {
+    const globals = await context.$prismic.api.getSingle('globals')
+
+    if (globals) {
+      const content = {
+        about_text: globals.data?.about_text
+          ? context.$prismic.asHtml(globals.data.about_text)
+          : '',
+        information: globals.data?.information
+          ? context.$prismic.asHtml(globals.data.information)
+          : ''
+      }
+
+      commit('setGlobals', content)
+    }
+  },
   sortContent({ commit }, sortBy) {
     commit('sortContent', sortBy)
   }
 }
 
 export const mutations = {
+  activateSlideshowInfo(state, payload) {
+    state.slideShowInfo = payload
+  },
   setLoaderStatus(state, payload) {
     state.loaderStatus = payload
   },
+  infoState(state, payload) {
+    state.showInfo = payload
+  },
   sort(state, payload) {
     state.sortBy = { sortBy: payload[0], direction: payload[1] }
+  },
+  setGlobals(state, data) {
+    state.globals = data
   },
   entries(state, data) {
     const reA = /[^a-zA-Z]/g
@@ -102,8 +133,8 @@ export const mutations = {
 
 const getPages = async (context) => {
   // const data = []
-  // const pageNum = 1
-  // const lastResult = []
+  // let pageNum = 1
+  // let lastResult = []
 
   // do {
   //   const resp = await context.$prismic.api.query(

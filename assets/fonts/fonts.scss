@@ -1,0 +1,32 @@
+/// Triptych - Grotesque
+
+@font-face {
+  font-family: 'Triptych-Grotesque';
+  src: url('~assets/fonts/Triptych-Grotesque/Triptych-Grotesque.woff2')
+      format('woff2'),
+    url('~assets/fonts/Triptych-Grotesque/Triptych-Grotesque.woff')
+      format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+
+///  Triptych - Roman
+
+@font-face {
+  font-family: 'Triptych-Roman';
+  src: url('~assets/fonts/Triptych-Roman/Triptych-Roman.woff2') format('woff2'),
+    url('~assets/fonts/Triptych-Roman/Triptych-Roman.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}
+
+///  Triptych - Italic
+
+@font-face {
+  font-family: 'Triptych-Italick';
+  src: url('~assets/fonts/Triptych-Italick/Triptych-Italick.woff2')
+      format('woff2'),
+    url('~assets/fonts/Triptych-Italick/Triptych-Italick.woff') format('woff');
+  font-style: normal;
+  font-weight: 400;
+}

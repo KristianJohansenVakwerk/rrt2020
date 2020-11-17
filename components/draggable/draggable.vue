@@ -71,44 +71,44 @@ export default {
     //   console.log(zoom, normalized.pixelX, normalized.spinX)
     //   // console.log(normalized.pixelX, normalized.pixelY)
     // })
-    const drag = document.getElementById('drag')
-    let scale = 1
+    // const drag = document.getElementById('drag')
+    // let scale = 1
 
-    document.addEventListener('mousewheel', function(e) {
-      let delta = e.delta || e.wheelDelta
-      let zoomOut
+    // document.addEventListener('mousewheel', function(e) {
+    //   let delta = e.delta || e.wheelDelta
+    //   let zoomOut
 
-      if (delta === undefined) {
-        // we are on firefox
-        delta = e.detail
-        zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0
-        zoomOut = !zoomOut
-      } else {
-        zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0
-      }
-      // const touchX = e.type === 'touchend' ? e.changedTouches[0].pageX : e.pageX
-      // const touchY = e.type === 'touchend' ? e.changedTouches[0].pageY : e.pageY
+    //   if (delta === undefined) {
+    //     // we are on firefox
+    //     delta = e.detail
+    //     zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0
+    //     zoomOut = !zoomOut
+    //   } else {
+    //     zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0
+    //   }
+    //   // const touchX = e.type === 'touchend' ? e.changedTouches[0].pageX : e.pageX
+    //   // const touchY = e.type === 'touchend' ? e.changedTouches[0].pageY : e.pageY
 
-      if (zoomOut) {
-        // we are zooming out
-        scale -= 0.01
+    //   if (zoomOut) {
+    //     // we are zooming out
+    //     scale -= 0.01
 
-        // const offsetWidth = drag.offsetWidth
-        // const offsetHeight = drag.offsetHeight
-        // drag.style.cssText = `transform-origin: ${touchX}px ${touchY}px; transform: scale( ${scale})  translate(-50%, -50%) `
-        gsap.to(drag, 0.2, { zoom: scale })
-      } else {
-        // we are zooming in
-        scale = scale + 0.01
+    //     // const offsetWidth = drag.offsetWidth
+    //     // const offsetHeight = drag.offsetHeight
+    //     // drag.style.cssText = `transform-origin: ${touchX}px ${touchY}px; transform: scale( ${scale})  translate(-50%, -50%) `
+    //     gsap.to(drag, 0.2, { zoom: scale })
+    //   } else {
+    //     // we are zooming in
+    //     scale = scale + 0.01
 
-        // const offsetWidth = drag.offsetWidth
-        // const offsetHeight = drag.offsetHeight
-        // drag.style.cssText = `transform-origin: ${touchX}px ${touchY}px; transform: scale( ${scale} ) translate(-50%, -50%)`
-        gsap.to(drag, 0.2, { zoom: scale })
-        // drag.style.transformOrigin = `(${touchX}px, ${touchY}px)`
-        // drag.style.transform = `scale( ${scale})`
-      }
-    })
+    //     // const offsetWidth = drag.offsetWidth
+    //     // const offsetHeight = drag.offsetHeight
+    //     // drag.style.cssText = `transform-origin: ${touchX}px ${touchY}px; transform: scale( ${scale} ) translate(-50%, -50%)`
+    //     gsap.to(drag, 0.2, { zoom: scale })
+    //     // drag.style.transformOrigin = `(${touchX}px, ${touchY}px)`
+    //     // drag.style.transform = `scale( ${scale})`
+    //   }
+    // })
   },
   methods: {}
 }

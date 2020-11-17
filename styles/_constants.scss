@@ -13,3 +13,28 @@ $baseline: 8px;
 
 $grid_outer_gutter: 32px;
 $base-width: 1440;
+
+$base-pos-nav: 15px;
+
+// Desktop
+$grid-desktop-columns: 12;
+$grid-desktop-gutter: 32px;
+$grid-desktop-sideMargins: 32px;
+$grid-desktop-breakpoint: 1600px;
+
+// Tablet
+$grid-tablet-columns: 12;
+$grid-tablet-gutter: 24px;
+$grid-tablet-sideMargins: 24px;
+$grid-tablet-breakpoint: 1023px;
+
+// Mobile
+$grid-mobile-columns: 6;
+$grid-mobile-gutter: 16px;
+$grid-mobile-sideMargins: 16px;
+$grid-mobile-breakpoint: 767px;
+
+// Base font
+$base-font-grotesque: 'Triptych-Grotesque';
+$base-font-roman: 'Triptych-Roman';
+$base-font-italic: 'Triptych-Italick';

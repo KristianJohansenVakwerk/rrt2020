@@ -1,6 +1,6 @@
 <style lang="scss" src="./share.scss"></style>
 <template>
-  <div class="share">
+  <div class="share" :class="[`share-${network}`]">
     <ShareNetwork
       :network="network"
       :url="url"
@@ -8,14 +8,17 @@
       :quote="description"
       :hashtags="tag"
     >
-      <span :class="`icon icon-${network}`">{{ network }}</span>
+      <span v-if="network === 'facebook'"><facebook /></span>
+      <span v-else><twitter /></span>
     </ShareNetwork>
   </div>
 </template>
 
 <script>
+import facebook from '~/components/icons/facebook.svg?inline'
+import twitter from '~/components/icons/twitter.svg?inline'
 export default {
-  components: {},
+  components: { facebook, twitter },
   props: {
     e: {
       type: [Object],

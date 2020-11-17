@@ -1,6 +1,6 @@
 <template>
   <header class="SiteHeader">
-    <nuxt-link :to="'/info'">Info</nuxt-link>
+    <a href="#" @click="updateInfoState()">Info</a>
   </header>
 </template>
 
@@ -10,7 +10,11 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    updateInfoState() {
+      this.$store.commit('ui/infoState', true)
+    }
+  }
 }
 </script>
 <style lang="scss" src="./Header.scss" />

@@ -1,6 +1,6 @@
 .SiteHeader {
   position: fixed;
-  top: 20px;
+  top: $base-pos-nav;
   left: 0;
   width: 100%;
   height: auto;
@@ -8,4 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  a {
+    @include type-heading();
+  }
 }

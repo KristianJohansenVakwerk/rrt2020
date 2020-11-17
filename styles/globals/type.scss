@@ -1,6 +1,3 @@
-// @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,500&display=swap');
-// @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,500&display=swap');
-
 html {
   text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
@@ -15,22 +12,21 @@ pre {
   text-transform: none;
 }
 
-p,
-h3,
-h4,
-h5 {
+p {
   margin: 0;
-  @include type-body;
+  @include type-paragraph;
   font-weight: normal;
 }
 
 h1 {
   @include type-heading;
-  text-transform: uppercase;
+  // text-transform: uppercase;
+  padding: 0;
+  margin: 0;
 }
 h2 {
   @include type-heading;
-  text-transform: uppercase;
+  // text-transform: uppercase;
 }
 
 /*
@@ -58,7 +54,12 @@ p + a {
 }
 
 p + p {
-  margin-top: bl(3.5);
+  margin-top: 1.3em;
+}
+
+.type-small p {
+  font-size: 12px;
+  line-height: 1.333;
 }
 
 .type-paragraph p + pre {

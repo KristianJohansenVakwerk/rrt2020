@@ -2,19 +2,11 @@
 <template>
   <div>
     <div class="slideshow-share">
-      <share
-        v-if="activeEntry !== null"
-        :e="activeEntry[0].entry"
-        type="slideshow"
-        network="facebook"
-      />
+      <shareContainer v-if="activeEntry !== null" :entry="activeEntry[0]" />
+    </div>
 
-      <share
-        v-if="activeEntry !== null"
-        :e="activeEntry[0].entry"
-        type="slideshow"
-        network="twitter"
-      />
+    <div class="slideshow-close">
+      <nuxt-link to="/"><Close /> </nuxt-link>
     </div>
     <div
       ref="slideshow"
@@ -37,17 +29,23 @@
         </div>
       </div>
     </div>
-    <div v-if="activeEntry !== null">
+    <div
+      v-if="activeEntry !== null"
+      class="slideshow-info"
+      :class="[slideShowInfo ? 'active' : '']"
+    >
       <ul class="indexes indexes-slideshow">
-        <li><indexesItem :e="activeEntry[0].entry" /></li>
+        <li><indexesItem :e="activeEntry[0].entry" :show-thumbs="false" /></li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Close from '~/components/icons/close.svg?inline'
 export default {
-  components: {},
+  components: { Close },
   props: {
     mods: {
       type: [Array],
@@ -94,7 +92,10 @@ export default {
       } else {
         return `slideshow-${this.mods}`
       }
-    }
+    },
+    ...mapState({
+      slideShowInfo: (state) => state.ui.slideShowInfo
+    })
   },
   async created() {
     this.activeEntry = await this.allSlides.filter(

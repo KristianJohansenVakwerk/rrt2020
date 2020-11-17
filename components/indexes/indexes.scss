@@ -1,12 +1,14 @@
+@mixin text-overflow() {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
 .indexes {
   li {
     border-top: 1px solid black;
-  }
-
-  &.indexes-slideshow {
-    .col-full {
-      display: none;
-    }
   }
 
   .images {
@@ -21,71 +23,179 @@
       padding-right: calc(35 / #{$base-width} * 100%);
     }
   }
-}
 
-.cols {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 10px calc(18 / #{$base-width} * 100%);
-  transition: background 200ms ease;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.2);
+  .sort {
+    margin-left: 5px;
   }
+  .cols {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 calc(18 / #{$base-width} * 100%);
+    transition: background 200ms ease;
+    cursor: pointer;
 
-  &.cols-headRow {
     &:hover {
-      background: none;
+      background: rgba(0, 0, 0, 0.2);
     }
 
-    span {
-      cursor: pointer;
-    }
-  }
-
-  .col {
-    &.col-1 {
-      width: calc(110 / #{$base-width} * 100%);
-    }
-
-    &.col-2 {
-      width: calc(206 / #{$base-width} * 100%);
-    }
-
-    &.col-3 {
-      width: calc(189 / #{$base-width} * 100%);
-    }
-
-    &.col-4 {
-      width: calc(311 / #{$base-width} * 100%);
-    }
-
-    &.col-5 {
-      width: calc(175 / #{$base-width} * 100%);
-    }
-
-    &.col-6 {
-      width: calc(84 / #{$base-width} * 100%);
-    }
-
-    &.col-7 {
-      width: calc(211 / #{$base-width} * 100%);
-    }
-
-    &.col-8 {
-      width: calc(110 / #{$base-width} * 100%);
-      display: flex;
-      justify-content: flex-start;
+    &.cols-headRow {
+      &:hover {
+        background: none;
+      }
 
       span {
-        width: 27.27%;
-        padding: 0 2%;
+        cursor: pointer;
+        @include type-bold();
       }
     }
 
-    &.col-full {
-      width: 100%;
+    .col {
+      height: 50px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      @include type-body();
+
+      &.col-1 {
+        width: calc(110 / #{$base-width} * 100%);
+      }
+
+      &.col-2 {
+        width: calc(206 / #{$base-width} * 100%);
+      }
+
+      &.col-3 {
+        width: calc(189 / #{$base-width} * 100%);
+      }
+
+      &.col-4 {
+        width: calc(311 / #{$base-width} * 100%);
+      }
+
+      &.col-5 {
+        width: calc(175 / #{$base-width} * 100%);
+      }
+
+      &.col-6 {
+        width: calc(84 / #{$base-width} * 100%);
+      }
+
+      &.col-7 {
+        width: calc(211 / #{$base-width} * 100%);
+      }
+
+      &.col-8 {
+        width: calc(110 / #{$base-width} * 100%);
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        span {
+          width: 27.27%;
+          padding: 0 2%;
+        }
+      }
+
+      &.col-artists,
+      &.col-press,
+      &.col-title {
+        span {
+          @include text-overflow;
+        }
+      }
+
+      &.col-title {
+        span {
+          @include type-italic;
+        }
+      }
+
+      &.col-thumbs {
+        padding: 10px 0 0 0;
+        overflow: hidden;
+
+        span {
+          .image {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      &.col-full {
+        height: auto;
+        width: 100%;
+        padding: 0;
+        max-height: 0em;
+        overflow: hidden;
+        transition: 0.1s ease all;
+        display: block;
+
+        .col-text {
+          width: calc(864 / #{$base-width} * 100%);
+          margin-left: calc(113 / #{$base-width} * 100%);
+          margin-bottom: 21px;
+          display: block;
+          p {
+            @include type-paragraph;
+          }
+        }
+      }
+
+      &.col-readMore {
+        // display: block;
+        align-items: center;
+
+        span {
+          @include type-bold;
+          font-size: 12px;
+          text-transform: uppercase;
+          width: 100%;
+        }
+      }
+    }
+
+    &.expanded {
+      .col {
+        &.col-full {
+          .col-container {
+            .col-text {
+              margin-top: 15px;
+            }
+            .images {
+              padding-bottom: 15px;
+            }
+          }
+        }
+        &.col-thumbs {
+          overflow: visible;
+        }
+      }
+    }
+  }
+
+  &.indexes-slideshow {
+    background-color: white;
+    .cols {
+      overflow: visible;
+
+      &:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+
+      .col {
+        &.col-full {
+          height: auto;
+          overflow: visible;
+          max-height: none;
+
+          .images {
+            display: none;
+          }
+        }
+      }
     }
   }
 }
